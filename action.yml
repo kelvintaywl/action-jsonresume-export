@@ -1,0 +1,32 @@
+# action.yml
+name: 'JSONResume Export'
+description: 'Simple GitHub Action to export your JSONResume'
+branding:
+  icon: 'printer'
+  color: 'yellow'
+inputs:
+  theme:
+    description: |
+      JSONResume theme name.
+      Assumes the theme package would be found 
+      as `jsonresume-theme-{theme}` in NPM.
+      You can search for themes at https://npmsearch.com/?q=jsonresume-theme
+    required: true
+    default: 'flat'
+  resume_filepath:
+    description: |
+      File path of the resume in JSONResume format
+    required: false
+    default: 'resume.json'
+  output_filepath:
+    description: |
+      Output file path for exported HTML file.
+    required: false
+    default: 'index.html'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.theme }}
+    - ${{ inputs.resume_filepath }}
+    - ${{ inputs.output_filepath }}
