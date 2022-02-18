@@ -66,7 +66,7 @@ jobs:
         uses: ad-m/github-push-action@master
         if: steps.commit.outputs.exit_code == 0
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
 ```
 
